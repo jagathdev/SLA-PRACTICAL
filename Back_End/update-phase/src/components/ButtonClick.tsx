@@ -24,8 +24,8 @@ const ButtonClick = () => {
         console.log("Mouse Enter triggered");
     }; // how to use mouse events  
 
-    const MouseLeave = (e: any) => {
-        console.log(e.target.value)
+    const MouseLeave = () => {
+        console.log()
     }
 
     const MouseDown = () => {

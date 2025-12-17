@@ -24,7 +24,7 @@ const State = () => {
 
     const [odd, setOdd] = useState<Array<number>>([])
 
-    const getArray = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const getArray = () => {
         setOdd([1, 3, 5, 7, 9, 11, 13])
     };
 

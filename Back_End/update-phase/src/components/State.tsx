@@ -10,35 +10,28 @@ interface newUser {
 
 const State = () => {
 
-    const [countVal, setCountVal] = useState(10)
+    const [countVal, setCountVal] = useState<number>(10)
 
     const updateCount = () => {
         setCountVal(countVal + 1)
     }
 
-    const [string, setString] = useState("Front End")
+    const [string, setString] = useState<string>("Front End")
 
     const updateString = () => {
-
-        setString("React")
-
-        if (string === "Front End") {
-            setString("React")
-        } else {
-            setString("Front End")
-        }
+        setString(string === "Front End" ? 'React' : "Front End")
     }
 
-    const [odd, setOdd] = useState([1])
+    const [odd, setOdd] = useState<Array<number>>([])
 
-    const getArray = (e: any) => {
-        setOdd([1, 2, 3, 4, 5])
+    const getArray = (e: React.MouseEvent<HTMLButtonElement>) => {
+        setOdd([1, 3, 5, 7, 9, 11, 13])
     };
 
     const [user, setUser] = useState<newUser>({ tech: "React", year: 2025 })
 
     const getObject = () => {
-        setUser({ tech: "Node", year: 2026, new: { name: "jafath" } })
+        setUser({ tech: "Node", year: 2026, new: { name: "jagath" } })
     }
 
     return (<>
@@ -87,17 +80,22 @@ const State = () => {
 
             <h2>2. Non - Primitive DataTypes</h2>
 
-            <div className="bg-green-400  h-30 flex flex-col items-center gap-3 m-5">
+            <div className="bg-green-400  h-auto flex flex-col items-center gap-3 m-5">
                 <h1>1.Array</h1>
-                <p>{odd.map((item) => (item))}</p>
-                <button className="p-2 bg-gray-800 rounded text-white" onClick={getArray}>Get Array</button>
+
+                <div>{odd.map((item, i) =>
+                    <li key={i}>{item}</li>
+                )}</div>
+
+                <button className="p-2 bg-gray-800 rounded text-white"
+                    onClick={getArray}>Get Array</button>
             </div>
-            {/* Why this showing like string why its not show in a array  */}
 
             <div className="bg-green-400  h-auto flex flex-col items-center gap-3 m-5">
                 <h1>2. Object</h1>
                 <p>{user.tech}</p>
                 <p>{user.year}</p>
+                <p>{user.new?.name}</p>
                 <button className="p-2 bg-gray-800 rounded text-white" onClick={getObject}>Get Object</button>
             </div>
 

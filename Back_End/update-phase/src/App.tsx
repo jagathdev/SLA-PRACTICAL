@@ -8,6 +8,7 @@ import Communication from "./TASKS/Day-18_Task/communication/Communication";
 import Aptitude from "./TASKS/Day-18_Task/apti/Aptitude";
 import Technical from "./TASKS/Day-18_Task/Tech/Technical";
 import Task from "./TASKS/Task";
+import Day19Task from "./TASKS/DailyTasks/Day19Task";
 
 const App = () => {
   return (<>
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/task/day18Task/communication" element={<Communication />} />
         <Route path="/task/day18Task/aptitute" element={<Aptitude />} />
         <Route path="/task/day18Task/technical" element={<Technical />} />
+        <Route path="/task/day19Task" element={<Day19Task />} />
       </Routes>
     </main>
   </>)

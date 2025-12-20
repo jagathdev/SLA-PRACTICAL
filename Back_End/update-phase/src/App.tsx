@@ -13,25 +13,24 @@ import Day20Task from "./TASKS/DailyTasks/Day20Task";
 import MainLayout from "./pages/MainLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import UseLocation from "./TASKS/DailyTasks/UseLocation";
+import UseParams from "./TASKS/DailyTasks/UseParams";
 
 const App = () => {
   return (<>
-    <header>
-      <nav>
-        {/* <Navbar /> */}
-      </nav>
-    </header>
-    {/* <Route>
+    <nav>
+      {/* <Navbar /> */}
+    </nav>
 
-    </Route> */}
     <main>
 
       <Routes>
-        <Route path="/register" element={<Register />} />
+
+        <Route path="/" element={<Register />} />
         <Route path="/login" element={<Login />} />
 
         <Route element={<MainLayout />} >
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/intraction" element={<Intraction />} />
           <Route path="/state" element={<State />} />
           <Route path="/task" element={<Task />} />
@@ -41,8 +40,12 @@ const App = () => {
           <Route path="/task/day18Task/technical" element={<Technical />} />
           <Route path="/task/day19Task" element={<Day19Task />} />
           <Route path="/task/day20Task" element={<Day20Task />} />
+          <Route path="/task/uselocation" element={<UseLocation />} />
+          <Route path="/task/useparams" element={<UseParams />} />
         </Route>
+
       </Routes>
+
     </main>
   </>)
 };

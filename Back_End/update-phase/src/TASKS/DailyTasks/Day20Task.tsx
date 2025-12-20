@@ -19,7 +19,7 @@ const Day20Task = () => {
     // const name = "jagath"
 
     return (<>
-        <div className="bg-gray-900 h-120 text-white">
+        <div className="bg-gray-900 flex flex-col gap-10 h-auto text-white">
             <div >
                 <h1 className="pb-5">Day 20 Task Login page and Register Page dont have a Navbar </h1>
                 <Link to='/login' className="bg-black text-white font-semibold p-1 rounded">Register Page</Link>
@@ -36,12 +36,17 @@ const Day20Task = () => {
                 <Link to='/task/useparams' className="bg-black text-white font-semibold p-1 rounded">Getuser Data</Link>
             </div>
 
+            {/* <UseParams userData={user} /> */}
             <div>
                 {user.map((e) => (
-                    <Link to={`/task/useparams/${e.id}`} className="bg-black text-white font-semibold p-1 rounded">Get Data</Link>
+                    <div key={e.id} className="bg-blue-200 text-black p-5 flex flex-col border-2 flex-wrap gap-5 w-50">
+                        <h1>{e.name}</h1>
+                        <h1>{e.age}</h1>
+                        <h1>{e.dept}</h1>
+                        <Link to={`/task/useparams/${e.id}`} className="bg-black text-white w-20 font-semibold p-1 rounded">Get Data</Link>
+                    </div>
                 ))}
             </div>
-            {/* <UseParams userData={user} /> */}
         </div >
     </>)
 };

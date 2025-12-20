@@ -42,6 +42,7 @@ const App = () => {
           <Route path="/task/day20Task" element={<Day20Task />} />
           <Route path="/task/uselocation" element={<UseLocation />} />
           <Route path="/task/useparams" element={<UseParams />} />
+          <Route path="/task/useparams/:id" element={<UseParams />} />
         </Route>
 
       </Routes>

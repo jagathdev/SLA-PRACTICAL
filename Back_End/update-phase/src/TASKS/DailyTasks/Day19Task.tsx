@@ -27,13 +27,17 @@ export const Shop = () => {
         { id: 4, product: "Rubber", price: "Rs.5", qty: 2 },
     ]);
 
-    const IncreaseQty = (i: number) => {
-        setProduct(prev =>
-            prev.map((item, i) => (
-                i === i ? { ...item, qty: item.qty + 1 } : item
-            ))
-        )
-    };
+    // const IncreaseQty = (i: number) => {
+    //     setProduct(prev =>
+    //         prev.map((item, i) => (
+    //             i === i ? { ...item, qty: item.qty + 1 } : item
+    //         ))
+    //     )
+    // };
+
+    const increaseQty = (e: any) => {
+
+    }
 
     const DecreaseQty = () => {
 
@@ -60,7 +64,7 @@ export const Shop = () => {
                         <div className="p-5 mb-5 font-semibold bg-amber-200 text-black w-60">
                             <h1>Product Name : {e.product}</h1>
                             <h1>Price : {e.price}</h1>
-                            <h1>Qty : <button className="px-3 text-xl" onClick={IncreaseQty}>+</button>{e.qty}<button className="px-3 text-xl" onClick={DecreaseQty}>-</button></h1>
+                            <h1>Qty : <button className="px-3 text-xl" onClick={() => { increaseQty(e.qty) }}>+</button>{e.qty}<button className="px-3 text-xl" onClick={DecreaseQty}>-</button></h1>
                             <button onClick={getToalAmount}>Get Total</button>
                         </div>
                     </div>

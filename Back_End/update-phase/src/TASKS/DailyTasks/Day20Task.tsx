@@ -45,7 +45,7 @@ const Day20Task = () => {
                         <h1>{e.name}</h1>
                         <h1>{e.age}</h1>
                         <h1>{e.dept}</h1>
-                        <Link to={`/task/useparams/${e.id}`} className="bg-black text-white w-20 font-semibold p-1 rounded">Get Data</Link>
+                        <Link to={`/task/useparams/${e.id}`} className="bg-black text-white w-20 font-semibold p-1 rounded">UseParams Data</Link>
                     </div>
                 ))}
             </div>

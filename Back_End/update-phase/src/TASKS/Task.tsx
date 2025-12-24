@@ -13,6 +13,7 @@ const Task = () => {
         { name: "Day20Task", link: "/task/day20Task" },
         { name: "Day21Task", link: "/task/day21Task" },
         { name: "Day22Task", link: "/task/day22Task" },
+        { name: "Day23Task", link: "/task/day23Task" },
     ];
 
     // const location = useLocation()

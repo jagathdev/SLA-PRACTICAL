@@ -15,6 +15,7 @@ import Register from "./pages/Register";
 import UseLocation from "./TASKS/DailyTasks/UseLocation";
 import UseParams from "./TASKS/DailyTasks/UseParams";
 import Day22Task from "./TASKS/DailyTasks/Day22Task";
+import Day23Task from "./TASKS/DailyTasks/Day23Task";
 
 const App = () => {
 
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/task/uselocation" element={<UseLocation />} />
           <Route path="/task/useparams" element={<UseParams />} />
           <Route path="/task/useparams/:id" element={<UseParams />} />
+          <Route path="/task/day23Task" element={<Day23Task />} />
 
         </Route>
       </Routes>

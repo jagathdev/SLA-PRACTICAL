@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Intraction from "./pages/Intraction";
 import State from "./components/State";
@@ -14,14 +14,11 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UseLocation from "./TASKS/DailyTasks/UseLocation";
 import UseParams from "./TASKS/DailyTasks/UseParams";
-import Day21Class from "./TASKS/DailyTasks/Day21Class";
 import Day22Task from "./TASKS/DailyTasks/Day22Task";
 
 const App = () => {
+
   return (<>
-    <nav>
-      {/* <Navbar /> */}
-    </nav>
 
     <main>
 
@@ -47,13 +44,12 @@ const App = () => {
           <Route path="/task/useparams/:id" element={<UseParams />} />
 
         </Route>
-
       </Routes>
 
     </main>
-    <footer>
 
-      <Day21Class />
+    <footer>
+      {/* <Day21Class /> */}
     </footer>
   </>)
 };

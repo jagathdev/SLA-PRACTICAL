@@ -1,32 +1,37 @@
-import { Link } from "react-router-dom";
-import Goback from "../components/Goback";
+import { Link, useLocation } from "react-router-dom";
 
 const Task = () => {
 
+    interface tasktype {
+        name: string,
+        link: string
+    }
 
-    // const Tasks: string[] = ["day18task", "day19task", "day20task", "day21task", "day22task"]
+    const TaskLink: tasktype[] = [
+        { name: "Day18Task", link: "/task/day18Task" },
+        { name: "Day19Task", link: "/task/day19Task" },
+        { name: "Day20Task", link: "/task/day20Task" },
+        { name: "Day21Task", link: "/task/day21Task" },
+        { name: "Day22Task", link: "/task/day22Task" },
+    ];
 
+    // const location = useLocation()
+
+    // const taskData = location.state.TaskLink
+
+    // console.log(taskData)
 
     return (<>
-        <div className="bg-gray-800 text-white h-120 text-center flex flex-col items-center gap-10">
+        <div className="bg-gray-800 text-white h-auto text-center flex flex-col items-center gap-10">
+
             <h1 className="text-3xl p-3">This is a Task Page</h1>
 
-            <Goback />
-
-            <div className="flex flex-col w-40 gap-5">
-                <Link to="/task/day18Task" className="p-2 rounded-2xl text-black font-bold bg-amber-300 ">Day 18</Link>
-            </div>
-
-            <div className="flex flex-col w-40 gap-5">
-                <Link to="/task/day19Task" className="p-2 rounded-2xl text-black font-bold bg-amber-300 ">Day 19</Link>
-            </div>
-
-            <div className="flex flex-col w-40 gap-5">
-                <Link to="/task/day20Task" className="p-2 rounded-2xl text-black font-bold bg-amber-300 ">Day 20</Link>
-            </div>
-
-            <div className="flex flex-col w-40 gap-5">
-                <Link to="/task/day22Task" className="p-2 rounded-2xl text-black font-bold bg-amber-300 ">Day 22</Link>
+            <div>
+                {TaskLink.map((e: any, i: number) => (
+                    <div key={i} className="flex w-40 mb-10">
+                        <Link to={e.link} className="p-2 rounded-2xl text-black font-bold bg-amber-300 ">{e.name}</Link>
+                    </div>
+                ))}
             </div>
 
         </div >

@@ -4,7 +4,7 @@ import Goback from "../components/Goback";
 
 const MainLayout = () => {
     return (<>
-        <div className="bg-gray-900">
+        <div className="bg-gray-900 text-white">
             <Navbar />
             <Goback />
             <Outlet />

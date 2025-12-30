@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const UseParams = () => {
 
@@ -32,6 +32,11 @@ const UseParams = () => {
                 <h1>{setData.dept}</h1>
             </div>
 
+        </div >
+
+        <div>
+            <h1 >hii</h1>
+            <Link to={"/uselocationnew"} state={{ userdata: user }} > go to new</Link>
         </div >
     </>)
 };

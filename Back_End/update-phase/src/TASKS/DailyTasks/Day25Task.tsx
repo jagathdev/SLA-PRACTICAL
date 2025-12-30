@@ -20,11 +20,13 @@ const Day25Task = () => {
 
     return (
         <>
-            <form onClick={formData}>
-                <input type="text" onChange={getVal} className="bg-red-200 text-black" />
-                <input type="submit" value="getData" />
-                <h1>{fdata}</h1>
-            </form>
+            <div className="p-5">
+                <form onClick={formData}>
+                    <input type="text" onChange={getVal} placeholder="Enter the Number" className="border-white" />
+                    <input type="submit" value="getData" className="bg-white text-black ml-5 rounded" />
+                    <h1>{fdata}</h1>
+                </form>
+            </div>
             <OddEven />
         </>
     )
@@ -34,7 +36,7 @@ export default Day25Task;
 
 export const OddEven = () => {
 
-    const [data, setData] = useState(0)
+    const [data, setData] = useState(null)
 
     const addNum = (e: any) => {
 
@@ -44,11 +46,11 @@ export const OddEven = () => {
 
         console.log(value)
 
+        const random = Math.min(Math.floor(Math.random() * 10) * 2, 100)
+
         if (Number(value) % 2 === 0) {
-            const random = Math.floor(Math.random() * 10) * 2
             setData(random + value)
         } else {
-            const random = Math.floor(Math.random() * 10)
             setData(random + value)
         }
 
@@ -64,10 +66,12 @@ export const OddEven = () => {
     // }
 
     return (<>
-        <form>
-            <input onChange={addNum} type="text" />
-            <input type="submit" />
-            <p>{data}</p>
-        </form>
+        <div className="bg-gray-400">
+            <form>
+                <input className="" placeholder="Enter <100 Number only" onChange={addNum} type="text" />
+                <input type="submit" className="ml-5 bg-white text-black" />
+                <p>{data}</p>
+            </form>
+        </div>
     </>)
 }

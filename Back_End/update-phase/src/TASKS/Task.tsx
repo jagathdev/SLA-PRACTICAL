@@ -9,6 +9,7 @@ const Task = () => {
 
     const TaskLink: tasktype[] = [
         { name: "Day18Task", link: "/task/day18Task" },
+        { name: "useParams", link: "./task/UseParams" },
         { name: "Day19Task", link: "/task/day19Task" },
         { name: "Day20Task", link: "/task/day20Task" },
         { name: "Day21Task", link: "/task/day21Task" },
@@ -16,6 +17,7 @@ const Task = () => {
         { name: "Day23Task", link: "/task/day23Task" },
         { name: "Day24Task", link: "/task/day24Task" },
         { name: "Day25Task", link: "/task/day25Task" },
+        { name: "Day26Task", link: "/task/day26Task" },
     ];
 
     // const location = useLocation()

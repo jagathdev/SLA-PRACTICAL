@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 const Day26Task = () => {
 
@@ -11,6 +11,7 @@ const Day26Task = () => {
 
         if (!formData.email) {
             setError("Email is required")
+
         }
         else if (!formData.password) {
             setError("Password is required")
@@ -22,44 +23,71 @@ const Day26Task = () => {
             setError("Mobile no is required")
         }
         else {
+            setError("")
             alert("Form Submitted Successfully")
         }
     }
 
     const getInput = (e: any) => {
+
         setFromData({ ...formData, [e.target.name]: e.target.value })
         console.log(formData)
+
     }
 
     return (
         <>
-            <div className="flex bg-green-200 flex-col text-black">
-                <form onSubmit={formSubmit}>
-                    <div>
-                        <label>Name :</label>
-                        <input type="text" name="name" onChange={getInput} />
+            <div className="flex items-start justify-center bg-green-100 p-8 rounded-xl shadow-md text-black gap-10 max-w-3xl mx-auto">
+                <form onSubmit={formSubmit} className="space-y-4 w-80">
+
+                    <div className="flex flex-col gap-1">
+                        <label className="font-medium">Name :</label>
+                        <input type="text" name="name" onChange={getInput}
+                            className="border rounded p-2 " />
                     </div>
-                    <div>
-                        <label>Email :</label>
-                        <input type="email" name="email" onChange={getInput} />
+
+                    <div className="flex flex-col gap-1">
+                        <label className="font-medium">Email :</label>
+                        <input type="email" name="email" onChange={getInput}
+                            className="border rounded p-2 " />
                     </div>
-                    <div>
-                        <label>Mobile :</label>
-                        <input type="number" name="mobile" onChange={getInput} />
+
+                    <div className="flex flex-col gap-1">
+                        <label className="font-medium">Mobile :</label>
+                        <input type="number" name="mobile" onChange={getInput}
+                            className="border rounded p-2 " />
                     </div>
-                    <div>
-                        <label>Password :</label>
-                        <input type="password" name="password" onChange={getInput} />
+
+                    <div className="flex flex-col gap-1">
+                        <label className="font-medium">Password :</label>
+                        <input type="password" name="password" onChange={getInput}
+                            className="border rounded p-2 " />
                     </div>
-                    <div>
-                        <input type="submit" />
-                    </div>
+
+                    <button type="submit"
+                        className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">
+                        Submit
+                    </button>
                 </form>
-                <h1>{error}</h1>
+
+                <h1 className="text-red-600 font-semibold">{error}</h1>
             </div>
+
         </>
     )
 }
 
 export default Day26Task;
+
+
+export const UseRef = () => {
+
+    const data = useRef("")
+
+    return (<>
+
+    </>)
+}
+
+
 

@@ -1,38 +1,47 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const Day27Task = () => {
 
+    const [showbox, setShowbox] = useState(true)
     const data = useRef<HTMLHeadingElement>(null);
+    const box = useRef<boolean>(true);
+    const inputValue = useRef<any>("");
+
+    // const [value, setVal] = useState()
 
     const handleClick = () => {
         if (data.current) {
-
             data.current.textContent = "useRef Hook is used to access DOM Elements";
         }
     }
 
     const hideBox = () => {
-        (!data.current)
-        console.log(data.current);
+        box.current = !box.current
+
+        setShowbox(box.current)
+        console.log(box.current);
     }
 
     const handleChange = () => {
-        console.log(data.current.value)
+        console.log(inputValue.current)
     }
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
         console.log(data.current)
     }
+
+
     return (<>
         <div>
             <h1 ref={data}>Its a UseRef Component</h1>
             <button onClick={handleClick}>Change Text</button>
         </div>
-        <div className={data.current ? "bg-red-500 text-white p-5 w-50 h-50 text-center" : "bg-green-500 text-white p-5 w-50 h-50 text-center"} >
+
+        <div className={showbox ? "bg-red-500 text-white p-5 w-50 h-50 text-center" : ""} >
             <h1>This is a Box</h1>
         </div >
-        <button onClick={hideBox}>{data.current ? "Hide Box" : "Show Box"}</button>
+        <button onClick={hideBox}>{showbox ? "Hide Box" : "Show Box"}</button>
 
         <div>
             <form onSubmit={handleSubmit}>

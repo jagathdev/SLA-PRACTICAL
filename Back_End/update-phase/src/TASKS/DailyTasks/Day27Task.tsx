@@ -21,16 +21,16 @@ const Day27Task = () => {
         box.current = !box.current
 
         setShowbox(box.current)
-        console.log(box.current);
+        // console.log(box.current);
     }
 
     const handleChange = () => {
-        setShowbox(inputValue.current.value)
+        console.log(inputValue.current.value)
     }
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log(inputValue.current.value)
+        setShowbox(inputValue.current.value)
     }
 
 

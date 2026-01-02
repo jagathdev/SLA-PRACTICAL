@@ -16,3 +16,10 @@ export interface profileData {
     profileName: string,
     age: string
 }
+
+export interface AdminData {
+    name: string,
+    age: string,
+    role: string
+}
+

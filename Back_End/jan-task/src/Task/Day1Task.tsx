@@ -1,6 +1,6 @@
 import React, { useState, type FormEvent } from "react"
 import type { userData } from '../Typescript/Interface'
-import type { profileData } from '../Typescript/Interface'
+import type { profileData, AdminData } from '../Typescript/Interface'
 
 
 const Day1Task: React.FC = () => {
@@ -15,6 +15,12 @@ const Day1Task: React.FC = () => {
             <Toggle />
             <h1>4. Update profile object (name, age)</h1>
             <UpdateProfile />
+            <h1>5. Conditional rendering (Admin / User)</h1>
+            <ConRendering />
+            <h1>6. Like Button</h1>
+            <LikeBtn />
+            <h1>7. Change background on click</h1>
+            <ChangeBg />
         </>
     )
 }
@@ -65,28 +71,48 @@ const RenderUser = () => {
     const getInputData = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
-        setUser((pre: any) => ({ ...pre, [name]: value }))
+        setUser((user: userData) => ({ ...user, [name]: value }))
+
     }
 
     const getUserData = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
 
+        // const showData =
+
     }
 
+    // const storeString = JSON.stringify(user)
+
+    // const setLocal = localStorage.setItem("userData", storeString)
+
+    // const getLocalData= JSON.parse(localStorage.getItem("userData"))
+    // console.log(getLocalData)
+
     return (<>
-        <div>
-            <form onSubmit={getUserData}>
-                <label>Name :</label>
-                <input type="text" onChange={getInputData} name="userName" />
-                <label>Age :</label>
-                <input type="text" onChange={getInputData} name="age" />
-                <label>Email :</label>
-                <input type="email" onChange={getInputData} name="email" />
-                <label>Mobile :</label>
-                <input type="number" onChange={getInputData} name="mobile" />
-                <label>Password :</label>
-                <input type="password" onChange={getInputData} name="password" />
+        <div >
+            <form onSubmit={getUserData} className="flex flex-col gap-5 justify-center">
+                <div>
+                    <label>Name :</label>
+                    <input className="border" type="text" onChange={getInputData} name="userName" />
+                </div>
+                <div>
+                    <label>Age :</label>
+                    <input className="border" type="text" onChange={getInputData} name="age" />
+                </div>
+                <div>
+                    <label>Email :</label>
+                    <input type="email" className="border" onChange={getInputData} name="email" />
+                </div>
+                <div>
+                    <label>Mobile :</label>
+                    <input type="number" className="border" onChange={getInputData} name="mobile" />
+                </div>
+                <div>
+                    <label>Password :</label>
+                    <input type="password" className="border" onChange={getInputData} name="password" />
+                </div>
                 <input type="submit" />
             </form>
             <div>
@@ -96,7 +122,6 @@ const RenderUser = () => {
                 <h1>Mobile :{user.mobile}</h1>
                 <h1>Password :{user.password}</h1>
             </div>
-
         </div>
 
     </>)
@@ -120,14 +145,14 @@ export const Toggle = () => {
 
 export const UpdateProfile = () => {
 
-    const [profile, setProfile] = useState<profileData[]>([
+    const [profile, setProfile] = useState<profileData>(
         { profileName: "", age: "" }
-    ])
+    )
 
     const getDataInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
-        setProfile((newData: any) => ({ ...newData, [name]: value }))
+        setProfile((profile: profileData) => ({ ...profile, [name]: value }))
     }
 
     const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
@@ -138,10 +163,147 @@ export const UpdateProfile = () => {
     return (<>
         <form onSubmit={submitForm}>
             <label>Name :</label>
-            <input type="text" name="name" onChange={getDataInput} />
+            <input type="text" name="profileName" onChange={getDataInput} />
             <label>Age :</label>
             <input type="text" name="age" onChange={getDataInput} />
             <input type="submit" value="Register" />
         </form>
+    </>)
+}
+
+// 5. Conditional rendering (Admin / User)
+
+export const ConRendering = () => {
+
+    const [admin, setAdmin] = useState<AdminData>({ name: "", age: "", role: "" })
+    const [finalData, setFinalData] = useState({ name: "", age: "", role: "" });
+    const [showData, setShowData] = useState<boolean>(false)
+
+    const Inputval = (e: any) => {
+        const { name, value } = e.target;
+        setAdmin((admin) => ({ ...admin, [name]: value }))
+    }
+
+    const getAdmin = (e: React.FormEvent) => {
+        e.preventDefault();
+        setFinalData(admin)
+        console.log(admin)
+        setShowData(true)
+    }
+
+    return (<>
+        <div>
+            <form onSubmit={getAdmin}>
+                <div>
+                    <label>Name :</label>
+                    <input type="text" name="name" className="border mb-5" onChange={Inputval} />
+                </div>
+                <div>
+                    <label>Age :</label>
+                    <input type="text" name="age" className="border" onChange={Inputval} />
+                </div>
+                <div>
+                    <label>Role :</label>
+                    <select name="role" onClick={Inputval} >
+                        <option value="" disabled>Select Any one</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+                <input type="submit" />
+            </form>
+        </div>
+
+        <div>
+            {showData && (
+                <>
+                    {finalData.role === "admin" ? (
+                        <div>
+                            <h1>This is a {finalData.role} Details </h1>
+                            <p>Admin Name :{finalData.name}</p>
+                            <p>Admin Age :{finalData.age}</p>
+                            <p>Admin Role :{finalData.role}</p>
+                        </div>
+                    ) : (
+                        <div>
+                            <h1>This is a {finalData.role}  Details</h1>
+                            <p>User Name :{finalData.name}</p>
+                            <p>User Age {finalData.age}</p>
+                            <p>User Role :{finalData.role}</p>
+                        </div>
+                    )}
+                </>
+            )}
+        </div>
+    </>)
+}
+
+// 6. Like button
+
+export const LikeBtn = () => {
+    const [like, setLike] = useState<boolean>(false)
+
+    return (<>
+        <button onDoubleClick={() => setLike(true)} className={like ? "bg-green-400 px-5 py-2 font-bold" : "bg-red-400 px-5 py-2 font-bold"}>{like ? "Liked" : "like"} </button>
+    </>)
+
+}
+
+// 7. Change background on click
+
+export const ChangeBg = () => {
+
+    const [bg, setBg] = useState<string>("")
+
+    const [showBox, setShowBox] = useState(false)
+
+    const getColorValue = (e: any) => {
+        setBg(e.target.value)
+        console.log(bg)
+    }
+
+    const getColor = (e: any) => {
+        e.preventDefault()
+        setBg(e.target.value)
+
+        setShowBox(true)
+
+        if (bg === "red") {
+            <div className="bg-red-600">
+                <h1>This is a {bg} Color Box</h1>
+            </div >
+        } else if (bg === "blue") {
+            < div className="bg-blue-600" >
+                <h1>This is a {bg} Color Box</h1>
+            </div >
+        } else if (bg === "black") {
+            < div className="bg-black" >
+                <h1>This is a {bg} Color Box</h1>
+            </div >
+        } else {
+            < div className="bg-yellow-600" >
+                <h1>This is a {bg} Color Box</h1>
+            </div >
+        }
+    }
+
+
+    return (<>
+
+        <form onSubmit={getColor}>
+            <label>Choose a color</label>
+            <select onClick={getColorValue} name="color">
+                <option value="" disabled>Select Color</option>
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="black">Black</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+            </select>
+            <input type="submit" value="Show Box" />
+        </form>
+        <div>
+            {showBox}
+        </div>
     </>)
 }

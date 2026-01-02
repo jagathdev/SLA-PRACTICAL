@@ -310,6 +310,8 @@ export const AddArray = () => {
 
         setProduct((product: any) => ({ ...product, [name]: value }))
     }
+
+
     const getProduct = (e: any) => {
         e.preventDefault();
 
@@ -324,31 +326,30 @@ export const AddArray = () => {
         <form onSubmit={getProduct}>
             <div>
                 <label>Product Id :</label>
-                <input type="text" onChange={getProductInput} name="id" className="border" />
+                <input type="text" onChange={getProductInput} name="id" className="border" value={product.id} />
             </div>
             <div>
                 <label>Product Name :</label>
-                <input type="text" onChange={getProductInput} name="productName" className="border" />
+                <input type="text" onChange={getProductInput} name="productName" className="border" value={product.productName} />
             </div>
             <div>
                 <label>Product Price :</label>
-                <input type="text" onChange={getProductInput} name="price" className="border" />
+                <input type="text" onChange={getProductInput} name="price" className="border" value={product.price} />
             </div>
             <div>
                 <label>Product Qty :</label>
-                <input type="text" onChange={getProductInput} name="qty" className="border" />
+                <input type="text" onChange={getProductInput} name="qty" className="border" value={product.qty} />
             </div>
             <input type="submit" value="Add Product" />
         </form>
         <div>
             {newProduct.map((e: any, i: number) => (
-                <div key={i}>
+                <div key={i} className="border p-3 my-2">
                     <h1>{e.id}</h1>
                     <h1>{e.productName}</h1>
                     <h1>{e.price}</h1>
                     <h1>{e.qty}</h1>
                 </div>
-
             ))}
         </div>
     </>)

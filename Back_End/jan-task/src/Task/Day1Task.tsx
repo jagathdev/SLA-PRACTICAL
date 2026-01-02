@@ -23,6 +23,10 @@ const Day1Task: React.FC = () => {
             <ChangeBg />
             <h1>8. Add / Remove item in array</h1>
             <AddArray />
+            <h1>9. Disable button after click </h1>
+            <DisableBtn />
+            <h1>10. Simple form input using state</h1>
+            <SimpleForm />
         </>
     )
 }
@@ -352,5 +356,44 @@ export const AddArray = () => {
                 </div>
             ))}
         </div>
+    </>)
+}
+// 9. Disable button after click
+
+const DisableBtn = () => {
+
+    const [btn, setBtn] = useState(true)
+
+    const DisableButton = () => {
+        setBtn(false)
+    }
+
+    return (<>
+        <button className={btn ? "bg-black text-white py-1 px-3" : "text-red-700"} onClick={DisableButton} >{btn ? "Click Me" : "Button is Disabled"}</button >
+    </>)
+}
+// 10. Simple form input using state
+
+const SimpleForm = () => {
+
+    const inputValue = (e: any) => {
+
+    }
+    const getFormData = () => {
+
+    }
+
+    return (<>
+        <form onSubmit={getFormData}>
+            <label>Name :</label>
+            <input type="text" className="border" onChange={inputValue} name="name" />
+            <label>Mobile :</label>
+            <input type="text" className="border" onChange={inputValue} name="mobile" />
+            <label>Email :</label>
+            <input type="email" className="border" onChange={inputValue} name="email" />
+            <label>Password :</label>
+            <input type="password" className="border" onChange={inputValue} name="password" />
+            <input type="submit" value="Register" />
+        </form>
     </>)
 }

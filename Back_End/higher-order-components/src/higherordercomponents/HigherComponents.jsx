@@ -1,20 +1,19 @@
 import Button from "../components/Button";
 
-const Withsomething = Button;
+const HOCButton = Button
 const HigherComponents = () => {
 
-
-    const WithDataFuntion = (Withsomething) => (props) => {
-        <Withsomething {...props} />
+    const NormalAlert = () => {
+        alert("Normal Button Alert")
+    }
+    const HOCAlert = () => {
+        alert("It's HOC Button Alert")
     }
 
-
-    return (
-        <>
-            <Button props={"Normal Button"} />
-            <WithDataFuntion props={"HOC Button"} />
-        </>
-    )
+    return (<>
+        <Button text={"Normal Button"} fun={NormalAlert} />
+        <HOCButton text={"HOC Button"} fun={HOCAlert} />
+    </>)
 
 }
 export default HigherComponents;

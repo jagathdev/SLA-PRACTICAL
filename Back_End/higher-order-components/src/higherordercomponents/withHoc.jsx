@@ -3,6 +3,7 @@ const withHoc = (WrapedComponent) => (props) => {
     const HocAlert = () => {
         alert("HocAlert Button Alert ")
     }
+    
     const newHocAlert = () => {
         alert("newHocAlert")
     }

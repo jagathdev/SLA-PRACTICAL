@@ -1,9 +1,15 @@
-import React from 'react'
+import LoginPage from './component/LoginPage'
+import Receipe from './component/Receipe'
+import { NewContext } from './context/NewContext'
 
 const App = () => {
   return (
     <>
-      <h1>It's a App Component</h1>
+      <NewContext>
+        <LoginPage />
+      </NewContext>
+      <Receipe />
+
     </>
   )
 }

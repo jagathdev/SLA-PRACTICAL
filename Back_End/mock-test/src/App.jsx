@@ -5,6 +5,8 @@ import Login from './mock/Form/Login'
 import Admin from './mock/Form/Admin'
 import User from './mock/Form/User'
 import RegisterForm from './form/RegisterForm'
+import LoginForm from './form/LoginForm'
+import HomeFormPage from './form/HomeFormPage'
 
 const App = () => {
   return (
@@ -18,6 +20,8 @@ const App = () => {
 
       <Routes>
         <Route path='/' element={<RegisterForm />} />
+        <Route path='/loginform' element={<LoginForm />} />
+        <Route path='/homeformpage' element={<HomeFormPage />} />
       </Routes>
 
     </>

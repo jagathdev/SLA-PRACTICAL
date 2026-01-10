@@ -12,23 +12,7 @@ const useGetFormData = () => {
 
     }
 
-    const getFormData = (e) => {
-        e.preventDefault();
-
-        if (inputData.password.length < 8) {
-            alert("Password is More than 8 Characters")
-        } else if (inputData.password !== inputData.conpassword) {
-            alert("Please Check  password and conform password is mismatch")
-        } else {
-            alert("Sucessfully Data Registered")
-            localStorage.setItem("regFormData", JSON.stringify(inputData))
-            setInputData("")
-        }
-
-    }
-
-
-    return { inputData, getInputData, getFormData }
+    return { inputData, getInputData }
 }
 
 export default useGetFormData;

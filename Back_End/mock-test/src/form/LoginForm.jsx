@@ -6,7 +6,7 @@ const LoginForm = () => {
 
     const navigate = useNavigate()
 
-    const { getInputData, inputData } = useGetFormData()
+    const { getInputData, inputData } = useGetFormData("")
     const [localData, setLocalData] = useState(null)
 
     const getFormData = (e) => {

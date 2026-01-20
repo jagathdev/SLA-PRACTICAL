@@ -1,5 +1,7 @@
 import express from 'express'
+
 import dotenv from 'dotenv'
+import route from './route/authRoutes';
 
 dotenv.config()
 
@@ -16,7 +18,7 @@ app.get("/api", (req, res) => {
 
 // })
 
-app.use("/api/users",)
+app.use("/api/users", route)
 
 const PORT = process.env.PORT || 3000
 

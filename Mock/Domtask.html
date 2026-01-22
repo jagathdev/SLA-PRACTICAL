@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Task</title>
+</head>
+
+<body>
+
+    <div id="perantDiv" style="background-color: white;">
+        <p id="pera">This is a Peragraph</p>
+        <button id="changePeraBtn">changePera</button>
+        <button id="changeColorBtn">changeColor</button>
+        <button id="hidePeraBtn">hidePera</button>
+    </div>
+
+    <div>
+        <input type="text" id="inputData">
+        <h1 id="display"></h1>
+        <p id="showInputData"></p>
+        <button id="getInputBtn">submit</button>
+    </div>
+
+    <form>
+        <label>Name</label>
+        <input type="text" id="name">
+        <label>Mobile</label>
+        <input type="text" id="mobile">
+        <input type="submit" id="myFormSubmit">
+    </form>
+
+    <button id="disableBtn">disableBtn</button>
+
+    <div>
+        <h1 id="countVal"></h1>
+        <button id="incBtn">incBtn</button>
+        <button id="decBtn">DecBtn</button>
+        <button id="resetBtn">Reset</button>
+    </div>
+
+    <script>
+        const pera = document.getElementById("pera")
+        const changePeraBtn = document.getElementById("changePeraBtn")
+        const perantDiv = document.getElementById("perantDiv")
+        const changeColorBtn = document.getElementById("changeColorBtn")
+        const inputData = document.getElementById("inputData")
+        const getInputBtn = document.getElementById("getInputBtn")
+        const hidePeraBtn = document.getElementById("hidePeraBtn")
+        const myFormSubmit = document.getElementById("myFormSubmit")
+        const name = document.getElementById("name")
+        const mobile = document.getElementById("mobile")
+        const disableBtn = document.getElementById("disableBtn")
+        const countVal = document.getElementById("countVal")
+        const decBtn = document.getElementById("decBtn")
+        const incBtn = document.getElementById("incBtn")
+        const resetBtn = document.getElementById("resetBtn")
+        const showLength = document.getElementById("display")
+
+        changePeraBtn.addEventListener("click", () => {
+            pera.innerText = "Pegraph content is changed"
+        })
+
+        changeColorBtn.addEventListener("click", () => {
+            perantDiv.style.background = "red"
+        })
+
+        inputData.addEventListener("change", (e) => {
+
+            showInputData.innerText = e.target.value
+        })
+
+        hidePeraBtn.addEventListener("click", () => {
+            pera.style.display = "none"
+        })
+
+        myFormSubmit.addEventListener("click", (e) => {
+            if (e.target.value === "" || e.target.mobile === "") {
+                alert("Input field is Empty")
+            }
+        })
+
+        pera.addEventListener("mouseover", () => {
+            pera.style.background = "green"
+        })
+
+        disableBtn.addEventListener("click", () => {
+            alert("Button Disabled ")
+            disableBtn.style.display = "none"
+        })
+
+        let count = 0;
+
+        incBtn.addEventListener("click", () => {
+            count++
+        })
+
+        resetBtn.addEventListener("click", () => {
+            countVal.innerText = "Count Value 0"
+        })
+
+        inputData.addEventListener("keypress", (e) => {
+
+            const length = e.target.value.length
+            display.textContent = length
+        })
+
+    </script>
+</body>
+
+</html>

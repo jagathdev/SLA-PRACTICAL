@@ -1,15 +1,8 @@
-export const create = (req, res) => {
-    console.log(req)
+export const arrayControler = (req, res) => {
+ 
+    console.log(req.body)
 
-    // let userData = []
-    // try {
-    //     const user = {
-    //         id: userData.length + 1,
-    //         ...req.body,
-    //     }
-    // } catch (error) {
-    //     console.log(error)
-    // }
+    const { name } = req.body
 
+     console.log(name)
 }
-

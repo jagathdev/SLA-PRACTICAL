@@ -1,15 +1,10 @@
 import express from 'express'
-import { create } from '../controllers/arrayControler.js'
+import { arrayControler } from '../controllers/arrayControler.js';
 
-const arrayRoute = express.Router()
+const arrayCreate = express.Router()
 
-// API List
+arrayCreate.post('/create', arrayControler)
 
-// 1. http://localhost:5000//api/createArray/array
+export default arrayCreate;
 
-
-arrayRoute.post('/array', create)
-
-
-export default arrayRoute;
 

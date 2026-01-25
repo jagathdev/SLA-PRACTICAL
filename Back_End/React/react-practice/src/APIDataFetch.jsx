@@ -17,8 +17,8 @@ const APIDataFetch = () => {
             <button onClick={getData}>Show Data</button>
             {data?.carts.map((e) => (
                 <div key={e.id}>
-                    <div>{e.id.products.map((e) => (
-                        <div>
+                    <div>{e.products.map((e) => (
+                        <div key={e.id}>
                             <h1>{e.price}</h1>
                             <h1>{e.quantity}</h1>
                             <h1>{e.total}</h1>

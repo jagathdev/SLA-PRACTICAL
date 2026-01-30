@@ -1,7 +1,11 @@
-export const userCreate = (req, res) => {
+import Users from '../model/userModel.js'
+
+export const userCreate = async (req, res) => {
 
     try {
-        res.status(200).json({ name: "jagath", age: 24, adult: true })
+
+        const newUser = await Users.create(req.body)
+        res.status(200).json({ Data: Users })
     } catch (error) {
         console.log(error)
     }

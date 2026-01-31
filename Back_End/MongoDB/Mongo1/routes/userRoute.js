@@ -1,5 +1,5 @@
 import express from 'express'
-import { userCreate, userGet, userDelete } from '../controlers/userController.js'
+import { userGet, userDelete, userCreate } from '../controlers/userController.js'
 
 const userRoute = express()
 

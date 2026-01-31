@@ -4,8 +4,10 @@ export const userCreate = async (req, res) => {
 
     try {
         const newUser = await Users.create(req.body)
-        res.status(200).json({ Data: Users })
-        console.log(Users)
+
+        res.status(200).send({ data: newUser })
+        console.log(newUser)
+
     } catch (error) {
         console.log(error)
     }

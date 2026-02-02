@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
     role: { type: String },
     age: { type: Number, max: 60, min: 18 },
     createdBy: { type: String, default: 'Admin' }
-}, { timestamp: true })
+}, { timestamps: true })
 
 const Users = mongoose.model('usersData', userSchema)
 

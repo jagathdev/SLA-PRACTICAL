@@ -11,13 +11,20 @@ const PORT = process.env.PORT || 5000
 const app = express()
 
 app.use(cors())
+app.get("/datas", (req, res) => {
+    const datas1 = { name: "surya" }
+    console.log(datas1)
+})
 
 app.use(express.json())
 
-DBCONNECT()
+// DBCONNECT()
 
-app.use('api/school', createStu)
+app.use('/api/school', createStu)
 
 app.listen(PORT, () => {
     console.log(`Server Connected http://localhost:${PORT}`)
 })
+
+
+// http://localhost:5000/api/school/newStudent

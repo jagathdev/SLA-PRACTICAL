@@ -1,68 +1,111 @@
-import axios from "axios"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 
-    const [input, setInput] = useState({ name: "", email: "", password: "", repassword: "" })
+    const [input, setInput] = useState({
+        name: "",
+        email: "",
+        gender: "",
+        password: "",
+        repassword: ""
+    });
 
-    const navigate = useNavigate()
-
-    // const storeLocal = localStorage.setItem('registerData', JSON.stringify(input))
+    const navigate = useNavigate();
 
     const getInput = (e) => {
+        const { name, value } = e.target;
+        setInput({ ...input, [name]: value });
+    };
 
-        const { name, value } = e.target
-
-        setInput({ ...input, [name]: value })
-    }
-
-    const storeDb = async (req, res) => {
-
+    const storeDb = async () => {
         try {
-            await axios.post('http://localhost:5000/api/userData/userCreate', input).then(
-                console.log("Data Created")
-            )
+            const res = await axios.post(
+                "http://localhost:5000/api/userData/userCreate",
+                input
+            );
+
+            if (res.data.success) {
+                alert("Registration Successful");
+                navigate("/login");
+            }
+
         } catch (error) {
-            console.log('data not created ', error)
+            console.error(error);
+            alert(error.response?.data?.message || "Registration Failed");
+        }
+    };
+
+    const getFormData = (e) => {
+        e.preventDefault();
+
+        if (input.password !== input.repassword) {
+            alert("Password mismatch");
+            return;
         }
 
-    }
-
-
-    const getFromData = (e) => {
-        e.preventDefault()
-
-        console.log(input)
-        if (input.password === input.repassword) {
-            navigate('/login')
-        } else {
-            alert("password Mismatch")
-        }
-        storeDb()
-
-    }
+        storeDb();
+    };
 
     return (
         <>
-            <form onSubmit={getFromData}>
+            <form onSubmit={getFormData}>
+
                 <label>Name:</label>
-                <input type="text" onChange={getInput} name="name" required minLength={3} maxLength={75} />
+                <input
+                    type="text"
+                    name="name"
+                    onChange={getInput}
+                    required
+                    minLength={3}
+                    maxLength={75}
+                />
+
                 <label>Email:</label>
-                <input type="text" onChange={getInput} name="email" required />
+                <input
+                    type="email"
+                    name="email"
+                    onChange={getInput}
+                    required
+                />
+
                 <label>Gender:</label>
-                <select >
-                    <option onChange={getInput} name="gender" value="male">Male</option>
-                    <option onChange={getInput} name="gender" value="female">Female</option>
+                <select
+                    name="gender"
+                    onChange={getInput}
+                    required
+                >
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
                 </select>
+
                 <label>Password:</label>
-                <input type="password" onChange={getInput} name="password" required minLength={8} maxLength={12} />
-                <label>Re-Enter password:</label>
-                <input type="password" onChange={getInput} name="repassword" required />
-                <input type="submit" value={"Register"} />
+                <input
+                    type="password"
+                    name="password"
+                    onChange={getInput}
+                    required
+                    minLength={8}
+                    maxLength={12}
+                />
+
+                <label>Re-Enter Password:</label>
+                <input
+                    type="password"
+                    name="repassword"
+                    onChange={getInput}
+                    required
+                    minLength={8}
+                    maxLength={12}
+                />
+
+                <input type="submit" value="Register" />
+
             </form>
         </>
-    )
-}
+    );
+};
 
-export default Register
+export default Register;

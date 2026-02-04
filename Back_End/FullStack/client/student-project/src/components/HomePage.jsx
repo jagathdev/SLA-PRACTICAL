@@ -1,24 +1,53 @@
+import { useEffect, useState } from "react";
+
 const HomePage = () => {
 
-    const localGetData = JSON.parse(localStorage.getItem('registerData'))
+    const [users, setUsers] = useState([]);
+    const [error, setError] = useState("");
 
-    const editDatas = () => {
+    const fetchUsers = async () => {
+        try {
+            const response = await fetch(
+                "http://localhost:5000/api/userData/userShow"
+            );
 
-    }
+            const data = await response.json();
+
+            if (!data.success) {
+                setError(data.message);
+                return;
+            }
+
+            setUsers(data.users);
+
+        } catch (err) {
+            console.error(err);
+            setError("Server error");
+        }
+    };
+
+    useEffect(() => {
+        fetchUsers();
+    }, []);
 
     return (
         <>
-            <h1>Datas Page</h1>
+            <h1>Users Data</h1>
+
+            {error && <p style={{ color: "red" }}>{error}</p>}
 
             <ul>
-                <li>Name : {localGetData.name}</li>
-                <li>Email id : {localGetData.email}</li>
-                <li>password : {localGetData.password}</li>
-                <button onClick={editDatas} >Edit Datas</button>
+                {users.map((user) => (
+                    <li key={user._id}>
+                        <p><b>Name:</b> {user.name}</p>
+                        <p><b>Email:</b> {user.email}</p>
+                        <p><b>Gender:</b> {user.gender || "N/A"}</p>
+                        <hr />
+                    </li>
+                ))}
             </ul>
-
         </>
-    )
-}
+    );
+};
 
-export default HomePage
+export default HomePage;

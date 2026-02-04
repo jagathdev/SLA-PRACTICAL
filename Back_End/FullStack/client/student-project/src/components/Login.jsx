@@ -1,43 +1,79 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
-    const [input, setInput] = useState({ email: "", password: "" })
+    const [input, setInput] = useState({
+        email: "",
+        password: ""
+    });
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const getInput = (e) => {
+        const { name, value } = e.target;
+        setInput({ ...input, [name]: value });
+    };
 
-        const { name, value } = e.target
+    const checkDatabaseData = async () => {
+        try {
+            const res = await axios.post(
+                "http://localhost:5000/api/userData/checkUser",
+                input
+            );
 
-        setInput({ ...input, [name]: value })
-    }
+            console.log("Login Response:", res.data);
 
-    const localGetData = JSON.parse(localStorage.getItem('registerData'))
+            if (res.data.success) {
+                alert("Login Successful");
+                navigate("/home");
+            } else {
+                alert(res.data.message);
+            }
 
-
-    const getFromData = (e) => {
-        e.preventDefault()
-        if (input.email === localGetData.email && input.password === localGetData.password) {
-            navigate('/home')
-        } else {
-            alert("datas Mismatch")
+        } catch (error) {
+            console.error(error);
+            alert(error.response?.data?.message || "Login Failed");
         }
-    }
+    };
+
+    const getFormData = (e) => {
+        e.preventDefault();
+
+        if (!input.email || !input.password) {
+            alert("All fields are required");
+            return;
+        }
+
+        checkDatabaseData();
+    };
 
     return (
         <>
-            <form onSubmit={getFromData}>
+            <form onSubmit={getFormData}>
+
                 <label>Email:</label>
-                <input type="text" onChange={getInput} name="email" />
+                <input
+                    type="email"
+                    name="email"
+                    onChange={getInput}
+                    required
+                />
+
                 <label>Password:</label>
-                <input type="password" onChange={getInput} name="password" />
-                <input type="submit" value={"Login"} />
+                <input
+                    type="password"
+                    name="password"
+                    onChange={getInput}
+                    required
+                />
+
+                <input type="submit" value="Login" />
+
             </form>
-
         </>
-    )
-}
+    );
+};
 
-export default Login
+export default Login;
